@@ -432,36 +432,33 @@
         
        actions:{
            createTopic() {
-              const controller = this.controllerFor("tags.show");
-              const Composer = require("discourse/models/composer");
-              if (controller.get("list.draft")) {
-                this.openTopicDraft(controller.get("list"));
-              } else {
-                this.controllerFor("composer")
-                  .open({
-                    categoryId: controller.get("category.id"),
-                    action: Composer.CREATE_TOPIC,
-                    draftKey: controller.get("list.draft_key"),
-                    draftSequence: controller.get("list.draft_sequence")
-                  })
-                  .then(() => {
-                    // Pre-fill the tags input field
-                    if (controller.get("model.id")) {
-                        
-                      const composerController  = this.controllerFor("composer"); //Added by webdirekt : Get the Composer Controller
-                      const composerModel = this.controllerFor("composer").get("model");
-                        
-                      composerModel.set(
-                        "tags",
-                        _.compact(
-                          _.flatten([
-                            controller.get("model.id"),
-                            controller.get("additionalTags")
-                          ])
-                        )
-                      );
-                      
-                      //Added by webdirekt 
+	      const controller = this.controllerFor("tag.show");
+	      const Composer = require("discourse/models/composer");
+	      if (controller.get("list.draft")) {
+		this.openTopicDraft(controller.get("list"));
+	      } else {
+		const composerController = this.controllerFor("composer");
+		composerController
+		  .open({
+		    categoryId: controller.get("category.id"),
+		    action: Composer.CREATE_TOPIC,
+		    draftKey: controller.get("list.draft_key"),
+		    draftSequence: controller.get("list.draft_sequence"),
+		  })
+		  .then(() => {
+		    // Pre-fill the tags input field
+		    if (composerController.canEditTags && controller.get("model.id")) {
+		      const composerController  = this.controllerFor("composer"); //Added by webdirekt : Get the Composer Controller
+		      const composerModel = this.controllerFor("composer").get("model");
+		      composerModel.set(
+			"tags",
+			[
+			  controller.get("model.id"),
+			  ...makeArray(controller.additionalTags),
+			].filter(Boolean)
+		      );
+		      
+		      //Added by webdirekt 
                       //Deselect All the Select tags checkboxes
                       composerController.send('deselectAll');
                       //Update select tags checkboxes based on pre-selected tags.
@@ -477,10 +474,10 @@
                                     
                             }
                         });
-                    }
-                  });
-              }
-            }
+		    }
+		  });
+	      }
+	   }   
        }
     });
 </script>
