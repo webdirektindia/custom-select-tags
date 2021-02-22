@@ -428,12 +428,13 @@
 </script>
 <!-- Override File: /app/assets/javascripts/discourse/routes/tags-show.js.es6 -->
 <script type="text/discourse-plugin" version="0.8">
+/*
     api.modifyClass('route:tags-show',{
         
        actions:{
            createTopic() {
 	      const controller = this.controllerFor("tag.show");
-	      //const Composer = require("discourse/models/composer");
+	      const Composer = require("discourse/models/composer");
 	      if (controller.get("list.draft")) {
 		this.openTopicDraft(controller.get("list"));
 	      } else {
@@ -480,6 +481,7 @@
 	   }   
        }
     });
+    */
 </script>
 
 <!-- Override File: /app/assets/javascripts/discourse/templates/composer.hbs -->
