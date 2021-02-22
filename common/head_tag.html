@@ -407,7 +407,7 @@
             },
             autoSelectParentTag(sagTagObj){
                 //Auto select Parent Tag if child is selected.
-                 if( sagTagObj.productCategory !=  sagTagObj.tagName){
+                 if( sagTagObj.productCategory.toLowerCase() !=  sagTagObj.tagName.toLowerCase()){
                     if(this.model.tags.indexOf(sagTagObj.productCategory) == -1){
                         var parentTagObj= this.get('productTags').findBy("tagName", sagTagObj.productCategory);
                             Ember.set(parentTagObj,"isChecked", true);
