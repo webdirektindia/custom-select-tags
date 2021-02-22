@@ -459,12 +459,13 @@
 			  ...makeArray(controller.additionalTags),
 			].filter(Boolean)
 		      );
-		      
+		      debugger;
 		      //Added by webdirekt 
                       //Deselect All the Select tags checkboxes
                       composerController.send('deselectAll');
                       //Update select tags checkboxes based on pre-selected tags.
                       composerModel.tags.forEach((tag) => {
+		      debugger;
                             var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
                             //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
                             if(sagTagObj){
