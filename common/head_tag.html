@@ -424,6 +424,7 @@
                
             },
             deselectAll(){
+	    debugger;
                 this.get('productTags').forEach((sagTagObject) => {
                     Ember.set(sagTagObject,"isChecked", false);
                 });
