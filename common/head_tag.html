@@ -80,9 +80,9 @@
                 }
                 
                 //Modified by Webdirekt on 22-02-2021. To find tag from ProductTags array based on tagName irrespective of case. (ie. webMethods is equals to webmethods) 
-		//var sagTagObj= this.get('productTags').findBy("tagName", tag);
+		var sagTagObj= this.get('productTags').findBy("tagName", tag);
 		debugger;
-		var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
+		//var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
 
                 //If checbox is selected the add tagName to "model.tags" array.
                 if(isChecked){
@@ -326,8 +326,8 @@
                         }
                         debugger;
 			//Modified by Webdirekt on 22-02-2021. To find tag from ProductTags array based on tagName irrespective of case. (ie. webMethods is equals to webmethods) 
-                        //var sagTagObj= this.get('productTags').findBy("tagName", tag);
-		        var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
+                        var sagTagObj= this.get('productTags').findBy("tagName", tag);
+		        //var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
 			
                         //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
                         //And also add tag to Model.
@@ -373,8 +373,8 @@
                     }
 		    debugger;
 		    //Modified by Webdirekt on 22-02-2021. To find tag from ProductTags array based on tagName irrespective of case. (ie. webMethods is equals to webmethods) 
-                    //var sagTagObj= this.get('productTags').findBy("tagName", tag);
-		    var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
+                    var sagTagObj= this.get('productTags').findBy("tagName", tag);
+		    //var sagTagObj= this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
 
                     if(sagTagObj){
                         Ember.set(sagTagObj,"isChecked", true);    
