@@ -461,6 +461,8 @@ api.modifyClass('route:tags-show',{
 			      );
 			      
 			      //Added by webdirekt 
+			      //Deselect All the Select tags checkboxes
+                      	      composerController.send('deselectAll');
 			      //Update select tags checkboxes based on pre-selected tags.
 			      composerModel.tags.forEach((tag) => {
 				    var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
