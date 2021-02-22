@@ -397,7 +397,8 @@
             },
             removeTag(tag){
                 
-                var sagTagObj= this.get('productTags').findBy("tagName", tag);
+                //var sagTagObj= this.get('productTags').findBy("tagName", tag);
+		var sagTagObj = this.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
                 if(sagTagObj){
                     Ember.set(sagTagObj,"isChecked", false);    
                 }
@@ -406,7 +407,7 @@
                 
             },
             autoSelectParentTag(sagTagObj){
-	    debugger;
+
                 //Auto select Parent Tag if child is selected.
 		if(sagTagObj){
 			if( sagTagObj.productCategory.toLowerCase() !=  sagTagObj.tagName.toLowerCase()){
@@ -463,13 +464,11 @@
 			  ...makeArray(controller.additionalTags),
 			].filter(Boolean)
 		      );
-		      debugger;
 		      //Added by webdirekt 
                       //Deselect All the Select tags checkboxes
                       composerController.send('deselectAll');
                       //Update select tags checkboxes based on pre-selected tags.
                       composerModel.tags.forEach((tag) => {
-		      debugger;
                             //var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
 			    var sagTagObj = composerController.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
                             //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
