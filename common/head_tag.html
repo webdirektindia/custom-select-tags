@@ -466,7 +466,8 @@
                       //Update select tags checkboxes based on pre-selected tags.
                       composerModel.tags.forEach((tag) => {
 		      debugger;
-                            var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
+                            //var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
+			    var sagTagObj = composerController.get('productTags').find((tagObj) => tagObj.tagName.toLowerCase() == tag.toLowerCase());
                             //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
                             if(sagTagObj){
                                 //Updated trhe checkbox status
