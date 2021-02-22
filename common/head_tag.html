@@ -431,9 +431,11 @@
     api.modifyClass('route:tags-show',{
         
        actions:{
+       	  //Modified createTopic action methods on 22-02-2021 as discourse update this method.
            createTopic() {
 	      const controller = this.controllerFor("tag.show");
 	      const Composer = require("discourse/models/composer");
+	      const {makeArray} = require("discourse-common/lib/helpers"); //Added by Webdirket on 22-02-2021. As Discourse update this action method.
 	      if (controller.get("list.draft")) {
 		this.openTopicDraft(controller.get("list"));
 	      } else {
