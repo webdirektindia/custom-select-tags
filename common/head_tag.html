@@ -428,61 +428,6 @@
 </script>
 <!-- Override File: /app/assets/javascripts/discourse/routes/tags-show.js.es6 -->
 <script type="text/discourse-plugin" version="0.8">
-
-api.modifyClass('route:tags-show',{
-        
-       actions:{
-		createTopic() {
-		      const controller = this.controllerFor("tag.show");
-		      const Composer = require("discourse/models/composer");
-		      const {makeArray} = require("discourse-common/lib/helpers");
-		      if (controller.get("list.draft")) {
-			this.openTopicDraft(controller.get("list"));
-		      } else {
-			const composerController = this.controllerFor("composer");
-			composerController
-			  .open({
-			    categoryId: controller.get("category.id"),
-			    action: Composer.CREATE_TOPIC,
-			    draftKey: controller.get("list.draft_key"),
-			    draftSequence: controller.get("list.draft_sequence"),
-			  })
-			  .then(() => {
-			    // Pre-fill the tags input field
-			    if (composerController.canEditTags && controller.get("model.id")) {
-			      const composerController  = this.controllerFor("composer"); //Added by webdirekt : Get the Composer Controller
-			      const composerModel = this.controllerFor("composer").get("model");
-			      composerModel.set(
-				"tags",
-				[
-				  controller.get("model.id"),
-				  ...makeArray(controller.additionalTags),
-				].filter(Boolean)
-			      );
-			      
-			      //Added by webdirekt 
-			      //Deselect All the Select tags checkboxes
-                      	      composerController.send('deselectAll');
-			      //Update select tags checkboxes based on pre-selected tags.
-			      composerModel.tags.forEach((tag) => {
-				    var sagTagObj= composerController.get('productTags').findBy("tagName", tag);
-				    //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
-				    if(sagTagObj){
-					//Updated trhe checkbox status
-					Ember.set(sagTagObj,"isChecked", true);    
-
-					//Auto select Parent Tag if child is selected.
-					composerController.send('autoSelectParentTag',sagTagObj);
-
-				    }
-				});
-			    }
-			  });
-		      }
-		    },
-	}
-});
-/*
     api.modifyClass('route:tags-show',{
         
        actions:{
@@ -535,7 +480,6 @@ api.modifyClass('route:tags-show',{
 	   }   
        }
     });
-    */
 </script>
 
 <!-- Override File: /app/assets/javascripts/discourse/templates/composer.hbs -->
