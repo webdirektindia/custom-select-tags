@@ -411,7 +411,7 @@
 		if(sagTagObj){
 			if( sagTagObj.productCategory.toLowerCase() !=  sagTagObj.tagName.toLowerCase()){
                     //if(this.model.tags.indexOf(sagTagObj.productCategory) == -1){
-		    if(this.model.tags.find((tag) => tag.toLowerCase() == sagTagObj.productCategory.toLowerCase())){
+		    if(!(this.model.tags.find((tag) => tag.toLowerCase() == sagTagObj.productCategory.toLowerCase()))){
                         var parentTagObj= this.get('productTags').findBy("tagName", sagTagObj.productCategory);
                             Ember.set(parentTagObj,"isChecked", true);
                              this.model.tags.pushObject(sagTagObj.productCategory);
