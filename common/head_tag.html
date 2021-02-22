@@ -79,8 +79,9 @@
                     this.model.set("tags", Ember.A());
                 }
                 
-		var sagTagObj= this.get('productTags').findBy("tagName", tag);
 
+                var sagTagObj= this.get('productTags').findBy("tagName", tagName);
+                
                 //If checbox is selected the add tagName to "model.tags" array.
                 if(isChecked){
 
@@ -321,9 +322,8 @@
                         if(!this.model.get("tags") || this.model.get("tags") == undefined){
                             this.model.set("tags", Ember.A());
                         }
-			
+                        
                         var sagTagObj= this.get('productTags').findBy("tagName", tag);
-		        
                         //If Entered tag is present in sag product tag list then change respective checkbox status to checked.  
                         //And also add tag to Model.
                         if(sagTagObj){
@@ -366,7 +366,7 @@
                     if(!this.model.get("tags") || this.model.get("tags") == undefined){
                         this.model.set("tags", Ember.A());
                     }
-		    
+
                     var sagTagObj= this.get('productTags').findBy("tagName", tag);
 
                     if(sagTagObj){
@@ -394,8 +394,7 @@
             },
             removeTag(tag){
                 
-                var sagTagObj= this.get('productTags').
-		
+                var sagTagObj= this.get('productTags').findBy("tagName", tag);
                 if(sagTagObj){
                     Ember.set(sagTagObj,"isChecked", false);    
                 }
@@ -417,7 +416,6 @@
                
             },
             deselectAll(){
-	    debugger;
                 this.get('productTags').forEach((sagTagObject) => {
                     Ember.set(sagTagObject,"isChecked", false);
                 });
